@@ -57,7 +57,7 @@ class DoctrineQueue implements QueueInterface {
 	 * @param Message $message
 	 * @return void
 	 */
-	public function publish(Message $message) {
+	public function submit(Message $message) {
 		$doctrineMessage = new DoctrineMessage();
 		$doctrineMessage->setQueue($this->name);
 		$doctrineMessage->setState(Message::STATE_PUBLISHED);
