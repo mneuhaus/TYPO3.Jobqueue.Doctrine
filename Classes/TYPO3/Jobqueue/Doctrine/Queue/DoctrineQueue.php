@@ -60,7 +60,7 @@ class DoctrineQueue implements QueueInterface {
 	public function submit(Message $message) {
 		$doctrineMessage = new DoctrineMessage();
 		$doctrineMessage->setQueue($this->name);
-		$doctrineMessage->setState(Message::STATE_PUBLISHED);
+		$doctrineMessage->setState(Message::STATE_SUBMITTED);
 		$doctrineMessage->setPayload($message->getPayload());
 		$this->messageRepository->add($doctrineMessage);
 		$this->persistenceManager->persistAll();
@@ -118,7 +118,7 @@ class DoctrineQueue implements QueueInterface {
 			return NULL;
 		}
 
-		$doctrineMessage->setState(Message::STATE_RECEIVED);
+		$doctrineMessage->setState(Message::STATE_RESERVED);
 		$this->messageRepository->update($doctrineMessage);
 		$this->persistenceManager->persistAll();
 
