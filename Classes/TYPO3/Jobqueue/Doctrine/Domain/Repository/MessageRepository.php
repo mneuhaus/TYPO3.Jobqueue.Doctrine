@@ -22,7 +22,7 @@ class MessageRepository extends \TYPO3\Flow\Persistence\Repository {
 		$query->matching(
 			$query->logicalAnd(
 				$query->equals('queue', $queueName),
-				$query->equals('state', Message::STATE_PUBLISHED)
+				$query->equals('state', Message::STATE_SUBMITTED)
 			)
 		);
 		$query->setLimit(1);
@@ -34,7 +34,7 @@ class MessageRepository extends \TYPO3\Flow\Persistence\Repository {
 		$query->matching(
 			$query->logicalAnd(
 				$query->equals('queue', $queueName),
-				$query->equals('state', Message::STATE_PUBLISHED)
+				$query->equals('state', Message::STATE_SUBMITTED)
 			)
 		);
 		if ($limit !== NULL) {
